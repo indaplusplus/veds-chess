@@ -7,21 +7,25 @@ public class Attack extends Move {
   private Piece pieceAttacked;
 
   /**
+   * Attack move.
    *
-   * @param piece
-   * @param pieceAttacked
-   * @param x
-   * @param y
+   * @param piece Ally piece.
+   * @param pieceAttacked Enemy piece.
+   * @param x X-coordinate
+   * @param y y-coordinate.
    */
   public Attack(Piece piece, Piece pieceAttacked, int x, int y) {
     super(piece, x, y);
     this.pieceAttacked = pieceAttacked;
   }
 
+  /**
+   * Move the ally piece to it's new coordinates,
+   * remove piece which is attacked.
+   */
   public void move() {
     this.getPiece().setX(this.getX());
     this.getPiece().setY(this.getYcoordinate());
-    System.out.println(String.format("Attack (%d, %d)", this.pieceAttacked.getX(), this.pieceAttacked.getY()));
     this.getPiece().getChess().removePiece(this.pieceAttacked);
   }
 }

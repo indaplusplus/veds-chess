@@ -3,7 +3,10 @@ package se.kth.veds.chess;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-public class ChessGameTest {
+public class ChessKnightTest {
+  /**
+   *
+   */
   @Test
   public void knightCheck() {
     Chess chess = new Chess();

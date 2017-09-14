@@ -8,7 +8,7 @@ import se.kth.veds.chess.moves.EnPassantMove;
 import se.kth.veds.chess.pieces.Bishop;
 import se.kth.veds.chess.pieces.King;
 import se.kth.veds.chess.pieces.Knight;
-import se.kth.veds.chess.pieces.Passant;
+import se.kth.veds.chess.pieces.Pawn;
 import se.kth.veds.chess.pieces.Queen;
 import se.kth.veds.chess.pieces.Rook;
 
@@ -36,7 +36,7 @@ public class Chess {
   public void loadDefaultBoard() {
     //White
     for (int i = 0; i < Chess.BOARD_SIZE_X; i++) {
-      this.addPiece(new Passant(this, this.getPlayerOne(), i, 6));
+      this.addPiece(new Pawn(this, this.getPlayerOne(), i, 6));
     }
     this.addPiece(new Bishop(this, this.getPlayerOne(), 2, 7));
     this.addPiece(new Bishop(this, this.getPlayerOne(), 5, 7));
@@ -49,7 +49,7 @@ public class Chess {
 
     //Black
     for (int i = 0; i < Chess.BOARD_SIZE_X; i++) {
-      this.addPiece(new Passant(this, this.getPlayerTwo(), i, 1));
+      this.addPiece(new Pawn(this, this.getPlayerTwo(), i, 1));
     }
     this.addPiece(new Bishop(this, this.getPlayerTwo(), 2, 0));
     this.addPiece(new Bishop(this, this.getPlayerTwo(), 5, 0));
@@ -176,11 +176,11 @@ public class Chess {
       }
       move.move();
       /*
-       * If another move other than En Passant has been made by a Passant make it not vulnerable.
+       * If another move other than "En Passant move" has been made by a Pawn makes the piece not vulnerable.
        */
-      if (piece instanceof Passant) {
+      if (piece instanceof Pawn) {
         if (!(move instanceof EnPassantMove)) {
-          ((Passant)piece).setVulnerableToEnPassant(false);
+          ((Pawn)piece).setVulnerableToEnPassant(false);
         }
       }
       piece.setPieceMoved(true);

@@ -6,7 +6,7 @@ import se.kth.veds.chess.Piece;
 import se.kth.veds.chess.pieces.Bishop;
 import se.kth.veds.chess.pieces.King;
 import se.kth.veds.chess.pieces.Knight;
-import se.kth.veds.chess.pieces.Passant;
+import se.kth.veds.chess.pieces.Pawn;
 import se.kth.veds.chess.pieces.Queen;
 import se.kth.veds.chess.pieces.Rook;
 
@@ -25,7 +25,7 @@ public class CommandLineInterface {
   private char pieceTypeToChar(Piece piece) {
     if (piece instanceof King) {
       return 'K';
-    } else if (piece instanceof Passant) {
+    } else if (piece instanceof Pawn) {
       return 'P';
     } else if (piece instanceof Knight) {
       return 'H';

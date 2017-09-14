@@ -6,9 +6,11 @@ public abstract class Move {
   private Piece piece;
 
   /**
+   * Wrapper for different moves which pieces can do.
+   *
    * @param piece Piece.
-   * @param x X-coordinate.
-   * @param y Y-coordinate.
+   * @param x X-coordinate the move lands.
+   * @param y Y-coordinate the move lands.
    */
   public Move(Piece piece, int x, int y) {
     this.piece = piece;
@@ -17,7 +19,7 @@ public abstract class Move {
   }
 
   /**
-   *
+   * Abstract function used to invoke what the move should do with the piece.
    */
   public abstract void move();
 

@@ -99,8 +99,9 @@ public abstract class Piece {
    * and then evaluated for which move is appropriate (normal move or attack).
    */
   public void addMovesFromArray(int[][] moves) {
-    for (int move[] : moves) {
-      Piece piece = this.getChess().getPieceAtPosition(this.getX() + move[0], this.getY() + move[1]);
+    for (int[] move : moves) {
+      Piece piece = this.getChess().getPieceAtPosition(
+          this.getX() + move[0], this.getY() + move[1]);
       if (piece == null) {
         this.addMove(new NormalMove(this, this.getX() + move[0], this.getY() + move[1]));
       } else if (piece.getPlayer().getColor() != this.getPlayer().getColor()) {
@@ -119,8 +120,8 @@ public abstract class Piece {
     Piece piece;
 
     do {
-      x+=dx;
-      y+=dy;
+      x += dx;
+      y += dy;
       piece = this.getChess().getPieceAtPosition(x,y);
       if (piece == null) {
         this.addMove(new NormalMove(this, x, y));
@@ -157,7 +158,7 @@ public abstract class Piece {
   }
 
   /**
-   *
+   * Getter for Chess.
    * @return Chess.
    */
   public Chess getChess() {
@@ -165,8 +166,8 @@ public abstract class Piece {
   }
 
   /**
-   *
-   * @param chess
+   * Setter for Chess.
+   * @param chess Chess.
    */
   public void setChess(Chess chess) {
     this.chess = chess;
@@ -181,8 +182,8 @@ public abstract class Piece {
   }
 
   /**
-   *
-   * @param moves
+   * Setter for the moves list.
+   * @param moves List.
    */
   public void setMoves(List<Move> moves) {
     this.moves = moves;
