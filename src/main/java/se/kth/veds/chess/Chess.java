@@ -79,7 +79,7 @@ public class Chess {
    */
   public boolean isCheckmate(Player player) {
     King king = this.getPlayersKing(player);
-    return this.isCheck(king) && isStalemate(player);
+    return this.isCheck(king) && this.isStalemate(player);
   }
 
   /**
@@ -107,8 +107,10 @@ public class Chess {
     for (Piece piece : this.getChessPieces()) {
       if (piece.getPlayer().getColor() == player.getColor()) {
         piece.refreshPossibleMoves();
-        if (piece.getMoves().size() != 0) {
-          return false;
+        for (Move move : piece.getMoves()) {
+          if (!this.enemyCanAttackPosition(move.getX(), move.getYcoordinate(), player)) {
+            return false;
+          }
         }
       }
     }
@@ -131,7 +133,7 @@ public class Chess {
    * @return If the enemy can attack the specified piece.
    */
   public boolean enemyCanAttackPiece(Piece allyPiece) {
-    return this.enemyCanAttackPosition(allyPiece.getX(), allyPiece.getY());
+    return this.enemyCanAttackPosition(allyPiece.getX(), allyPiece.getY(), allyPiece.getPlayer());
   }
 
   /**
@@ -140,16 +142,13 @@ public class Chess {
    * @param y Y-coordinate.
    * @return If a enemy can attack the position.
    */
-  public boolean enemyCanAttackPosition(int x, int y) {
+  public boolean enemyCanAttackPosition(int x, int y, Player player) {
     for (Piece piece : this.getChessPieces()) {
-      if (piece.getPlayer().getColor() != piece.getPlayer().getColor()) {
+      if (piece.getPlayer().getColor() != player.getColor()) {
         piece.refreshPossibleMoves();
         for (Move move : piece.getMoves()) {
-          //Only aggressive moves are relevant.
-          if (move instanceof Attack || move instanceof EnPassantMove) {
-            if (move.getX() == x && move.getYcoordinate() == y) {
-              return true;
-            }
+          if (move.getX() == x && move.getYcoordinate() == y) {
+            return true;
           }
         }
       }

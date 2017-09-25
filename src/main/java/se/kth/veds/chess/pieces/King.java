@@ -36,7 +36,7 @@ public class King extends Piece {
       if (rookOne instanceof Rook) {
         for (int i = 1; i < Math.abs(this.getX() - rookOne.getX()); i++) {
           if (this.getChess().getPieceAtPosition(this.getX() - i, playersBacklineY) != null
-              || this.getChess().enemyCanAttackPosition(this.getX() - i, playersBacklineY)) {
+              || this.getChess().enemyCanAttackPosition(this.getX() - i, playersBacklineY, this.getPlayer())) {
             break;
           }
           this.addMove(new Castling(this, (Rook)rookOne, false, this.getX() - 2, playersBacklineY));
@@ -45,7 +45,7 @@ public class King extends Piece {
       if (rookTwo instanceof Rook) {
         for (int i = 1; i < Math.abs(this.getX() - rookTwo.getX()); i++) {
           if (this.getChess().getPieceAtPosition(this.getX() + i, playersBacklineY) != null
-              || this.getChess().enemyCanAttackPosition(this.getX() + i, playersBacklineY)) {
+              || this.getChess().enemyCanAttackPosition(this.getX() + i, playersBacklineY, this.getPlayer())) {
             break;
           }
           this.addMove(new Castling(this, (Rook)rookTwo, true, this.getX() + 2, playersBacklineY));
