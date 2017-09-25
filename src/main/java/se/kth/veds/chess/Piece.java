@@ -32,6 +32,18 @@ public abstract class Piece {
   }
 
   /**
+   * @return Returns this piece's position in chess notation.
+   * E.g. (1, 1) becomes a8
+   */
+  @Override
+  public String toString() {
+    char[] letter = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
+
+    return letter[xcoordinate] + String.valueOf(chess.BOARD_SIZE_Y - ycoordinate);
+  }
+
+
+  /**
    * Refreshes the list of possible moves for a Piece.
    */
   public void refreshPossibleMoves() {
